@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  mongo:
+    container_name: mongo42
+    image: mongo:4.2
+    ports:
+      - 27017:27017
+    volumes:
+      - ./datamongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
