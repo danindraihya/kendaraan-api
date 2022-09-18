@@ -1,12 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Kendaraan;
 use Illuminate\Http\Request;
+use App\Services\Kendaraan\KendaraanService;
 
 class KendaraanController extends Controller
 {
+
+    protected KendaraanService $kendaraanservice;
+
+    public function __construct(KendaraanService $kendaraanService)
+    {
+        $this->kendaraanService = $kendaraanService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,17 +25,7 @@ class KendaraanController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return "ok";
     }
 
     /**
@@ -35,7 +36,40 @@ class KendaraanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        try {
+            
+            // $kendaraan = new Kendaraan();
+
+            // $kendaraan->tahun_keluaran = 2022;
+            // $kendaraan->warna = 'hijau';
+            // $kendaraan->harga = 20000.01;
+            // $kendaraan->jenis = 'Mobil';
+            // $kendaraan->mesin = 'V Engine';
+            // $kendaraan->kapasitas_penumpang = 4;
+            // $kendaraan->tipe = 'GG';
+            // $kendaraan->tipe_suspensi = 'asd';
+            // $kendaraan->tipe_transmisi = 'asd';
+
+            // $kendaraan->save();
+
+            // dd($kendaraan);
+
+            dd($this->kendaraanService);
+
+            $result = $this->kendaraanService->saveKendaraanData(['id' => 1]);
+
+
+        } catch (\Throwable $th) {
+
+            dd($th);
+
+            return 'not ok';
+
+            //throw $th;
+        }
+
+        return 'ok';
     }
 
     /**
@@ -49,16 +83,6 @@ class KendaraanController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Kendaraan  $kendaraan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Kendaraan $kendaraan)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

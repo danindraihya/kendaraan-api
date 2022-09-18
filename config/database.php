@@ -93,7 +93,7 @@ return [
 
         'mongodb' => [
             'driver' => 'mongodb',
-            'dsn' => env('DB_URI', 'mongodb://root:root@localhost:27017/?authMechanism=DEFAULT'),
+            'dsn' => env('DB_URI', 'mongodb://root:root@localhost:27017/?authMechanism=SCRAM-SHA-256'),
             'database' => 'myappdb',
         ]
 
