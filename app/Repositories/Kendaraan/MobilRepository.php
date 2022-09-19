@@ -45,7 +45,7 @@ class MobilRepository implements KendaraanRepositoryInterface
     {
         try {
             
-            $mobil = $this->mobil::where('_id', $data['id']);
+            $mobil = $this->mobil::where('merek', $data['merek']);
             
             $mobil->update($data, ['upsert' => true]);
 

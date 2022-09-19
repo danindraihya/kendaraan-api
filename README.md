@@ -10,9 +10,9 @@
     MONGO_DB_USERNAME=root<br/>
     MONGO_DB_PASSWORD=root
 4. Install all modules with command 'composer install --ignore-platform-reqs'
-5. Run migration with command 'php artisan migration'
-6. Run database seed with command 'php artisan db:seed'
-7. Run unit testing with command 'php artisan test'
+5. Run database seed with command 'php artisan db:seed'
+6. Run unit testing with command 'php artisan test'
+7. Run server with command 'php artisan serve'
 8. Login with (username: test, password: test) on /api/login to generate token to access others REST API
 
 

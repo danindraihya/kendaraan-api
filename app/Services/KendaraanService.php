@@ -231,8 +231,7 @@ class KendaraanService
         try {
             
             $validator = Validator::make($data, [
-                'id' => 'required|string',
-                'merek' => 'nullable|string',
+                'merek' => 'required|string',
                 'tahun_keluaran' => 'nullable|integer',
                 'warna' => 'nullable|string',
                 'harga' => 'nullable|string',
@@ -261,8 +260,7 @@ class KendaraanService
         try {
             
             $validator = Validator::make($data, [
-                'id' => 'required|string',
-                'merek' => 'nullable|string',
+                'merek' => 'required|string',
                 'tahun_keluaran' => 'nullable|integer',
                 'warna' => 'nullable|string',
                 'harga' => 'nullable|string',

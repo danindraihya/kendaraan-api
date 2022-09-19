@@ -78,7 +78,7 @@ class KendaraanController extends Controller
     {
         try {
             $data = $request->only([
-                'id',
+                'merek',
                 'tahun_keluaran',
                 'warna',
                 'harga',
@@ -108,7 +108,7 @@ class KendaraanController extends Controller
         try {
 
             $data = $request->only([
-                'id',
+                'merek',
                 'tahun_keluaran',
                 'warna',
                 'harga',

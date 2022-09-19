@@ -46,7 +46,7 @@ class MotorRepository implements KendaraanRepositoryInterface
     public function updateDataKendaraan(Array $data)
     {
         try {
-            $motor = $this->motor::where('_id', $data['id']);
+            $motor = $this->motor::where('merek', $data['merek']);
         
             $motor->update($data, ['upsert' => true]);
 
