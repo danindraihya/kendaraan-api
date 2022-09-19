@@ -92,9 +92,11 @@ return [
         ],
 
         'mongodb' => [
-            'driver' => 'mongodb',
-            'dsn' => env('DB_URI', 'mongodb://root:root@localhost:27017/?authMechanism=SCRAM-SHA-256'),
-            'database' => 'myappdb',
+            'host'     => env('MONGO_DB_HOST', 'localhost'),
+            'port'     => env('MONGO_DB_PORT', 27017),
+            'database' => env('MONGO_DB_DATABASE', 'kendaraanAPI'),
+            'username' => env('MONGO_DB_USERNAME', 'root'),
+            'password' => env('MONGO_DB_PASSWORD', 'root'),
         ]
 
     ],

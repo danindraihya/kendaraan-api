@@ -110,8 +110,9 @@ class KendaraanTest extends TestCase
         $this->withHeader('Authorization', "Bearer {$token}");
 
         $testData = [
-            'merek' => 'Hyundai',
-            'qty' => 0
+            'merek' => 'Ducati',
+            'qty' => 1,
+            'total_pembayaran' => 50000
         ];
 
         $response = $this->post('api/kendaraan/jualKendaraan', $testData);

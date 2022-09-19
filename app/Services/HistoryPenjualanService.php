@@ -31,10 +31,20 @@ class HistoryPenjualanService
                 throw new \Exception($validator->errors()->first(), 400);
             }
             
-            $dataKendaraan = $this->motorRepository->getDataByMerek($data['merek']);
+            $dataMotor = $this->motorRepository->getDataByMerek($data['merek']);
+            $dataMobil = $this->mobilRepository->getDataByMerek($data['merek']);
+
+            if(count($dataMotor) < 1 && count($dataMobil) < 1) {
+                throw new \Exception("Data not found", 400);
+            }
+
+            $dataKendaraan = $dataMotor;
+
+            if(count($dataMotor) < 1) {
+                $dataKendaraan = $dataMobil;
+            }
 
             if(count($dataKendaraan) < 1) {
-                throw new \Exception("Data not found", 400);
             } else {
                 $dataKendaraan = $dataKendaraan[0];
             }
@@ -48,6 +58,9 @@ class HistoryPenjualanService
                     'merek' => $data['merek'],
                     'jenis' => $dataKendaraan['jenis'],
                     'terjual' => $dataHistoryPenjualan['qty'],
+                    'total_pembayaran' => $dataHistoryPenjualan['total_pembayaran'],
+                    'total_harga' => $dataHistoryPenjualan['total_harga'],
+                    'total_kembalian' => $dataHistoryPenjualan['total_kembalian'],
                     'tanggal_terjual' => date('d-m-Y', strtotime($dataHistoryPenjualan['created_at']))
                 ]);
             }

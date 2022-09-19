@@ -10,22 +10,6 @@ use App\Models\User;
 
 class HistoryPenjualanTest extends TestCase
 {
-
-    public function testLaporanPenjualanPerKendaraanWithAuth()
-    {
-        $user = User::where('username', 'test')->first();
-        $token = JWTAuth::fromUser($user);
-        $this->withHeader('Authorization', "Bearer {$token}");
-
-        $testData = [
-            'merek' => 'Hyundai'
-        ];
-
-        $response = $this->post('api/kendaraan/getLaporanPenjualanPerKendaraan', $testData);
-
-        $response->assertStatus(200);
-    }
-
     public function testLaporanPenjualanPerKendaraanWithoutAuth()
     {
         $response = $this->post('api/kendaraan/getLaporanPenjualanPerKendaraan');
@@ -41,6 +25,22 @@ class HistoryPenjualanTest extends TestCase
         $this->withHeader('Authorization', "Bearer {$token}");
 
         $response = $this->post('api/kendaraan/getLaporanPenjualanPerKendaraan');
+
+        $response->assertStatus(400);
+    }
+
+    public function testLaporanPenjualanPerKendaraanDataNotFound()
+    {
+
+        $user = User::where('username', 'test')->first();
+        $token = JWTAuth::fromUser($user);
+        $this->withHeader('Authorization', "Bearer {$token}");
+
+        $testData = [
+            'merek' => 'XXX'
+        ];
+
+        $response = $this->post('api/kendaraan/getLaporanPenjualanPerKendaraan', $testData);
 
         $response->assertStatus(400);
     }

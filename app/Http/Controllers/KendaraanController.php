@@ -168,7 +168,8 @@ class KendaraanController extends Controller
             
             $data = $request->only([
                 'merek',
-                'qty'
+                'qty',
+                'total_pembayaran'
             ]);
     
             $result = $this->kendaraanService->jualKendaraan($data);
@@ -180,7 +181,6 @@ class KendaraanController extends Controller
             }
 
         } catch (\Exception $error) {
-            dd($error->getMessage());
             return $this->error($error->getMessage(), $error->getCode());
         }
         

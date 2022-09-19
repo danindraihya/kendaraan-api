@@ -20,14 +20,14 @@ class HistoryPenjualanRepository implements HistoryPenjualanRepositoryInterface
             $listDataHistoryPenjualan = $this->historyPenjualan::where('kendaraan_id', $kendaraanId)->get();
 
             return $listDataHistoryPenjualan;
-            
+
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
 
     }
 
-    public function createHistoryPenjualan(String $kendaraanId, int $qty)
+    public function createHistoryPenjualan(String $kendaraanId, int $qty, int $totalHarga, int $totalPembayaran)
     {
         try {
 
@@ -35,12 +35,15 @@ class HistoryPenjualanRepository implements HistoryPenjualanRepositoryInterface
 
             $historyPenjualan->kendaraan_id = $kendaraanId;
             $historyPenjualan->qty = $qty;
+            $historyPenjualan->total_harga = $totalHarga;
+            $historyPenjualan->total_pembayaran = $totalPembayaran;
+            $historyPenjualan->total_kembalian = ($totalPembayaran - $totalHarga);
             $historyPenjualan->save();
 
-            return $historyPenjualan->fresh();
+            return $historyPenjualan;
 
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
 
         

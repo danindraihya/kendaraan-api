@@ -51,8 +51,7 @@ class AuthController extends Controller
 
             return $this->success("Berhasil login", $result);
 
-        } catch (Exception $error) {
-            
+        } catch (\Exception $error) {
             
             return $this->error($error->getMessage(), $error->getCode());
 

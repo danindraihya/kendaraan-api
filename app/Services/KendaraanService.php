@@ -100,7 +100,8 @@ class KendaraanService
 
             $validator = Validator::make($data, [
                 'merek' => 'required|string',
-                'qty' => 'required|integer|numeric'
+                'qty' => 'required|integer|numeric',
+                'total_pembayaran' => 'required|integer|numeric'
             ]);
     
             if($validator->fails()){
@@ -117,8 +118,18 @@ class KendaraanService
                         "message" => "Stok kendaraan kurang dari quantity beli"
                     ];
                 }
+
+                $totalHarga = $dataMotor[0]['harga'] *  $data['qty'];
+
+
+                if($totalHarga > $data['total_pembayaran']) {
+                    return [
+                        "status" => false,
+                        "message" => "Uang pembayaran kurang"
+                    ];
+                }
                 
-                $createHistoryPenjualan = $this->historyPenjualanRepository->createHistoryPenjualan($dataMotor[0]['_id'], $data['qty']);
+                $createHistoryPenjualan = $this->historyPenjualanRepository->createHistoryPenjualan($dataMotor[0]['_id'], $data['qty'], $totalHarga, $data['total_pembayaran']);
                 $updateStokKendaraan = $this->motorRepository->updateDataKendaraan([
                     'id' => $dataMotor[0]['_id'],
                     'stok' => ($dataMotor[0]['stok'] - $data['qty'])
@@ -142,7 +153,17 @@ class KendaraanService
                     ];
                 }
 
-                $createHistoryPenjualan = $this->historyPenjualanRepository->createHistoryPenjualan($dataMobil[0]['_id'], $data['qty']);
+                $totalHarga = $dataMobil[0]['harga'] *  $data['qty'];
+
+
+                if($totalHarga > $data['total_pembayaran']) {
+                    return [
+                        "status" => false,
+                        "message" => "Uang pembayaran kurang"
+                    ];
+                }
+
+                $createHistoryPenjualan = $this->historyPenjualanRepository->createHistoryPenjualan($dataMobil[0]['_id'], $data['qty'], $totalHarga, $data['total_pembayaran']);
                 $updateStokKendaraan = $this->mobilRepository->updateDataKendaraan([
                     'id' => $dataMobil[0]['_id'],
                     'stok' => ($dataMobil[0]['stok'] - $data['qty'])
@@ -184,7 +205,7 @@ class KendaraanService
                 'merek' => 'required|string|unique:kendaraans',
                 'tahun_keluaran' => 'required|integer',
                 'warna' => 'required|string',
-                'harga' => 'required|string',
+                'harga' => 'required|numeric|integer',
                 'mesin' => 'required|string',
                 'tipe_suspensi' => 'required|string',
                 'tipe_transmisi' => 'required|string',
@@ -284,7 +305,7 @@ class KendaraanService
                 'merek' => 'required|string|unique:kendaraans',
                 'tahun_keluaran' => 'required|integer',
                 'warna' => 'required|string',
-                'harga' => 'required|string',
+                'harga' => 'required|numeric|integer',
                 'mesin' => 'required|string',
                 'kapasitas_penumpang' => 'required|integer',
                 'tipe' => 'required|string'

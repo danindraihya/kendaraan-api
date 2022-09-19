@@ -34,23 +34,28 @@ class UserService
 
     public function login(Array $data)
     {
-        $validator = Validator::make($data, [
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-
-        if($validator->fails()){
-            throw new \Exception($validator->errors()->first(), 400);
+        try {
+            $validator = Validator::make($data, [
+                'username' => 'required',
+                'password' => 'required',
+            ]);
+    
+            if($validator->fails()){
+                throw new \Exception($validator->errors()->first(), 400);
+            }
+    
+            $user = $this->userRepository->getByUsername($data['username']);
+    
+    
+            if (! $token = auth()->attempt($validator->validated($user))) {
+                throw new \Exception("Unauthorized", 401);
+            }
+    
+            return $this->createNewToken($token);
+        } catch (\Exception $error) {
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
-
-        $user = $this->userRepository->getByUsername($data['username']);
-
-
-        if (! $token = auth()->attempt($validator->validated($user))) {
-            throw \Exception("Unauthorized", 401);
-        }
-
-        return $this->createNewToken($token);
+        
     }
 
     public function createNewUser(Array $data)
@@ -73,7 +78,7 @@ class UserService
             return $result;
 
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
 
     }
