@@ -9,7 +9,7 @@
     MONGO_DB_DATABASE=kendaraanAPI<br/>
     MONGO_DB_USERNAME=root<br/>
     MONGO_DB_PASSWORD=root
-4. Install all modules with command 'composer install'
+4. Install all modules with command 'composer install --ignore-platform-reqs'
 5. Run migration with command 'php artisan migration'
 6. Run database seed with command 'php artisan db:seed'
 7. Run unit testing with command 'php artisan test'
