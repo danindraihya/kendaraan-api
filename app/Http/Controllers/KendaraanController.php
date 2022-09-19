@@ -6,104 +6,184 @@ namespace App\Http\Controllers;
 
 use App\Models\Kendaraan;
 use Illuminate\Http\Request;
-use App\Services\Kendaraan\KendaraanService;
+use App\Services\KendaraanService;
+use App\Traits\ResponseAPI;
 
 class KendaraanController extends Controller
 {
+    use ResponseAPI;
 
-    protected KendaraanService $kendaraanservice;
+    protected KendaraanService $kendaraanService;
 
     public function __construct(KendaraanService $kendaraanService)
     {
         $this->kendaraanService = $kendaraanService;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function tambahDataMotor(Request $request)
     {
-        return "ok";
+
+        try {
+
+            $data = $request->only([
+                'merek',
+                'tahun_keluaran',
+                'warna',
+                'harga',
+                'mesin',
+                'tipe_suspensi',
+                'tipe_transmisi'
+            ]);
+            
+
+            $result = $this->kendaraanService->saveDataMotor($data);
+
+            return $this->success("Berhasil menambahkan data motor", []);
+
+
+        } catch (\Exception $error) {
+            return $this->error($error->getMessage(), $error->getCode());
+
+        }
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function tambahDataMobil(Request $request)
+    {
+
+        try {
+
+            $data = $request->only([
+                'merek',
+                'tahun_keluaran',
+                'warna',
+                'harga',
+                'mesin',
+                'kapasitas_penumpang',
+                'tipe',
+            ]);
+            
+
+            $result = $this->kendaraanService->saveDataMobil($data);
+
+            return $this->success("Berhasil menambahkan data motor", []);
+
+
+        } catch (\Exception $error) {
+            return $this->error($error->getMessage(), $error->getCode());
+        }
+    }
+
+    public function updateDataMotor(Request $request)
+    {
+        try {
+            $data = $request->only([
+                'id',
+                'tahun_keluaran',
+                'warna',
+                'harga',
+                'mesin',
+                'tipe_suspensi',
+                'tipe_transmisi',
+                'stok'
+            ]);
+
+    
+            $result = $this->kendaraanService->updateDataMotor($data);
+
+            if($result) {
+                return $this->success('Berhasil update data motor', []);
+            } else {
+                return $this->error('Gagal update data motor', 400);
+            }
+
+        } catch (\Exception $error) {
+            return $this->error($error->getMessage(), $error->getCode());
+        }
+        
+    }
+
+    public function updateDataMobil(Request $request)
+    {
+        try {
+
+            $data = $request->only([
+                'id',
+                'tahun_keluaran',
+                'warna',
+                'harga',
+                'mesin',
+                'tipe_suspensi',
+                'tipe_transmisi',
+                'stok'
+            ]);
+    
+            $result = $this->kendaraanService->updateDataMobil($data);
+    
+            return $this->success('Berhasil update data mobil', []);
+
+
+        } catch (\Exception $error) {
+            return $this->error($error->getMessage(), $error->getCode());
+        }
+
+        
+    }
+
+    public function lihatStokAllKendaraan(Request $request)
+    {
+
+        try {
+           
+            $result = $this->kendaraanService->getAllStokKendaraan();
+
+            return $this->success("Sukses", $result);
+
+        } catch (\Exception $error) {
+            return $this->error($error->getMessage(), $error->getCode());
+        }
+
+    }
+
+    public function lihatStokKendaraanByMerek(Request $request)
+    {
+        try {
+
+            $data = $request->only([
+                'merek'
+            ]);
+
+            $result = $this->kendaraanService->getKendaraanByMerek($data);
+            
+            return $this->success("Success", $result);
+        } catch (\Exception $error) {
+            throw new \Exception($error->getMessage(), $error->getCode());
+        }
+    }
+
+    public function jualKendaraan(Request $request)
     {
 
         try {
             
-            // $kendaraan = new Kendaraan();
+            $data = $request->only([
+                'merek',
+                'qty'
+            ]);
+    
+            $result = $this->kendaraanService->jualKendaraan($data);
+    
+            if($result['status']) {
+                return $this->success($result['message'], []);
+            } else {
+                return $this->error($result['message'], 400);
+            }
 
-            // $kendaraan->tahun_keluaran = 2022;
-            // $kendaraan->warna = 'hijau';
-            // $kendaraan->harga = 20000.01;
-            // $kendaraan->jenis = 'Mobil';
-            // $kendaraan->mesin = 'V Engine';
-            // $kendaraan->kapasitas_penumpang = 4;
-            // $kendaraan->tipe = 'GG';
-            // $kendaraan->tipe_suspensi = 'asd';
-            // $kendaraan->tipe_transmisi = 'asd';
-
-            // $kendaraan->save();
-
-            // dd($kendaraan);
-
-            dd($this->kendaraanService);
-
-            $result = $this->kendaraanService->saveKendaraanData(['id' => 1]);
-
-
-        } catch (\Throwable $th) {
-
-            dd($th);
-
-            return 'not ok';
-
-            //throw $th;
+        } catch (\Exception $error) {
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
-
-        return 'ok';
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Kendaraan  $kendaraan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Kendaraan $kendaraan)
-    {
-        //
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kendaraan  $kendaraan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Kendaraan $kendaraan)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Kendaraan  $kendaraan
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Kendaraan $kendaraan)
-    {
-        //
-    }
+    
 }

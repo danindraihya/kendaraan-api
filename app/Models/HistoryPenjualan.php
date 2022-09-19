@@ -6,18 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
-use App\Models\HistoryPenjualan;
+use App\Models\Kendaraan;
 
-class Kendaraan extends Eloquent
+class HistoryPenjualan extends Eloquent
 {
     use HasFactory;
-
-    protected $connection = 'mongodb';
-
+    
     protected $guarded = ['id'];
 
-    public function historyPenjualan()
+    public function kendaraan()
     {
-        return $this->hasMany(HistoryPenjualan::class);
+
+        return $this->belongsTo(Kendaraan::class);
     }
+
+
 }

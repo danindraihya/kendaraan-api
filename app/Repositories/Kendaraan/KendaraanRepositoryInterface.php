@@ -4,7 +4,8 @@ namespace App\Repositories\Kendaraan;
 
 interface KendaraanRepositoryInterface
 {
-    public function tambahKendaraan(Array $data);
-    public function updateKendaraan(Array $data);
-    public function hapusKendaraan(Array $data);
+    public function save(Array $data);
+    public function updateDataKendaraan(Array $data);
+    public function getAll();
+    public function getDataByMerek(String $merek);
 }

@@ -15,6 +15,7 @@ class CreateKendaraansTable extends Migration
     {
         Schema::create('kendaraans', function (Blueprint $table) {
             $table->id();
+            $table->string('merek');
             $table->integer('tahun_keluaran');
             $table->string('warna');
             $table->double('harga', 200, 2);
@@ -24,6 +25,7 @@ class CreateKendaraansTable extends Migration
             $table->string('tipe');
             $table->string('tipe_suspensi');
             $table->string('tipe_transmisi');
+            $table->integer('stok')->default(0);
             $table->timestamps();
         });
     }

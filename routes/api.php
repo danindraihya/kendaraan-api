@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HistoryPenjualanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::middleware('auth:api')->post('logout', [AuthController::class, 'logout']);
-// Route::post('logout', [AuthController::class, 'logout']);
-
-Route::resource('kendaraan', KendaraanController::class);
+Route::middleware('auth:api')->post('kendaraan/tambahDataMotor', [KendaraanController::class, 'tambahDataMotor']);
+Route::middleware('auth:api')->post('kendaraan/updateDataMotor', [KendaraanController::class, 'updateDataMotor']);
+Route::middleware('auth:api')->post('kendaraan/tambahDataMobil', [KendaraanController::class, 'tambahDataMobil']);
+Route::middleware('auth:api')->post('kendaraan/updateDataMobil', [KendaraanController::class, 'updateDataMobil']);
+Route::middleware('auth:api')->post('kendaraan/lihatStokAllKendaraan', [KendaraanController::class, 'lihatStokAllKendaraan']);
+Route::middleware('auth:api')->post('kendaraan/lihatStokKendaraanByMerek', [KendaraanController::class, 'lihatStokKendaraanByMerek']);
+Route::middleware('auth:api')->post('kendaraan/jualKendaraan', [KendaraanController::class, 'jualKendaraan']);
+Route::middleware('auth:api')->post('kendaraan/getLaporanPenjualanPerKendaraan', [HistoryPenjualanController::class, 'getLaporanPenjualanPerKendaraan']);
