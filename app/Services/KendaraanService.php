@@ -131,7 +131,7 @@ class KendaraanService
                 
                 $createHistoryPenjualan = $this->historyPenjualanRepository->createHistoryPenjualan($dataMotor[0]['_id'], $data['qty'], $totalHarga, $data['total_pembayaran']);
                 $updateStokKendaraan = $this->motorRepository->updateDataKendaraan([
-                    'id' => $dataMotor[0]['_id'],
+                    'merek' => $dataMotor[0]['merek'],
                     'stok' => ($dataMotor[0]['stok'] - $data['qty'])
                     ]);
 
@@ -165,7 +165,7 @@ class KendaraanService
 
                 $createHistoryPenjualan = $this->historyPenjualanRepository->createHistoryPenjualan($dataMobil[0]['_id'], $data['qty'], $totalHarga, $data['total_pembayaran']);
                 $updateStokKendaraan = $this->mobilRepository->updateDataKendaraan([
-                    'id' => $dataMobil[0]['_id'],
+                    'merek' => $dataMobil[0]['merek'],
                     'stok' => ($dataMobil[0]['stok'] - $data['qty'])
                 ]);
 

@@ -30,6 +30,7 @@ class HistoryPenjualanController extends Controller
             return $this->success('Success', $listDataLaporan);
 
         } catch (\Exception $error) {
+
             return $this->error($error->getMessage(), $error->getCode());
         }
         

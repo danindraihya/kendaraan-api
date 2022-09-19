@@ -51,10 +51,17 @@ class HistoryPenjualanService
 
             $listDataHistoryPenjualan = $this->historyPenjualanRepository->getHistoryByKendaraan($dataKendaraan['_id']);
 
-            $listLaporanPenjualan = [];
+            $listDetailPenjualan = [];
+
+            $totalHargaPenjualan = 0;
+            $totalQtyTerjual = 0;
 
             foreach($listDataHistoryPenjualan as $dataHistoryPenjualan) {
-                array_push($listLaporanPenjualan, [
+
+                $totalHargaPenjualan += $dataHistoryPenjualan['total_harga'];
+                $totalQtyTerjual += $dataHistoryPenjualan['qty'];
+
+                array_push($listDetailPenjualan, [
                     'merek' => $data['merek'],
                     'jenis' => $dataKendaraan['jenis'],
                     'terjual' => $dataHistoryPenjualan['qty'],
@@ -65,7 +72,13 @@ class HistoryPenjualanService
                 ]);
             }
 
-            return $listLaporanPenjualan;
+            $dataLaporanPenjualan = [
+                'total_qty_terjual' => $totalQtyTerjual,
+                'total_harga_penjualan' => $totalHargaPenjualan,
+                'detail_penjualan' => $listDetailPenjualan
+            ];
+
+            return $dataLaporanPenjualan;
         } catch (\Exception $error) {
             throw new \Exception($error->getMessage(), $error->getCode());
         }
