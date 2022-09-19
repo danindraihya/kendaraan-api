@@ -35,7 +35,7 @@ class MotorRepository implements KendaraanRepositoryInterface
 
             $motor->save();
 
-            return $motor->fresh();
+            return $motor;
 
         } catch (\Exception $error) {
             throw new \Exception($error->getMessage(), 500);
@@ -50,7 +50,7 @@ class MotorRepository implements KendaraanRepositoryInterface
         
             $motor->update($data, ['upsert' => true]);
 
-            return $motor->fresh();
+            return $motor;
         } catch (\Exception $error) {
             throw new \Exception($error->getMessage(), 500);
         }

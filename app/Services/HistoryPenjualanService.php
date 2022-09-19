@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Repositories\HistoryPenjualan\HistoryPenjualanRepository;
 use App\Repositories\Kendaraan\MotorRepository;
 use App\Repositories\Kendaraan\MobilRepository;
+use Illuminate\Support\Facades\Validator;
 
 class HistoryPenjualanService
 {
@@ -34,13 +35,26 @@ class HistoryPenjualanService
 
             if(count($dataKendaraan) < 1) {
                 throw new \Exception("Data not found", 400);
+            } else {
+                $dataKendaraan = $dataKendaraan[0];
             }
 
-            $listDataHistoryPenjualan = $this->historyPenjualanRepository->getHistoryByKendaraan($dataKendaraan[0]['_id']);
+            $listDataHistoryPenjualan = $this->historyPenjualanRepository->getHistoryByKendaraan($dataKendaraan['_id']);
 
-            return $listDataHistoryPenjualan->toArray();
+            $listLaporanPenjualan = [];
+
+            foreach($listDataHistoryPenjualan as $dataHistoryPenjualan) {
+                array_push($listLaporanPenjualan, [
+                    'merek' => $data['merek'],
+                    'jenis' => $dataKendaraan['jenis'],
+                    'terjual' => $dataHistoryPenjualan['qty'],
+                    'tanggal_terjual' => date('d-m-Y', strtotime($dataHistoryPenjualan['created_at']))
+                ]);
+            }
+
+            return $listLaporanPenjualan;
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
     }
 }

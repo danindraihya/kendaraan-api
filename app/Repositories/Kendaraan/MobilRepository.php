@@ -34,7 +34,7 @@ class MobilRepository implements KendaraanRepositoryInterface
 
             $mobil->save();
 
-            return $mobil->fresh();
+            return $mobil;
 
         } catch (\Exception $error) {
             throw new \Exception($error->getMessage(), 500);
@@ -49,7 +49,7 @@ class MobilRepository implements KendaraanRepositoryInterface
             
             $mobil->update($data, ['upsert' => true]);
 
-            return $mobil->fresh();
+            return $mobil;
 
         } catch (\Exception $error) {
             throw new \Exception($error->getMessage(), 500);

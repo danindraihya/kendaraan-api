@@ -157,7 +157,7 @@ class KendaraanController extends Controller
             
             return $this->success("Success", $result);
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), $error->getCode());
+            return $this->error($error->getMessage(), $error->getCode());
         }
     }
 
@@ -180,7 +180,8 @@ class KendaraanController extends Controller
             }
 
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), $error->getCode());
+            dd($error->getMessage());
+            return $this->error($error->getMessage(), $error->getCode());
         }
         
     }

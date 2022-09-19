@@ -49,7 +49,7 @@ class KendaraanService
             return $listStokKendaraan;
 
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
         
     }
@@ -90,7 +90,7 @@ class KendaraanService
             return [];
 
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
     }
 
@@ -100,7 +100,7 @@ class KendaraanService
 
             $validator = Validator::make($data, [
                 'merek' => 'required|string',
-                'qty' => 'required|integer'
+                'qty' => 'required|integer|numeric'
             ]);
     
             if($validator->fails()){
@@ -119,7 +119,10 @@ class KendaraanService
                 }
                 
                 $createHistoryPenjualan = $this->historyPenjualanRepository->createHistoryPenjualan($dataMotor[0]['_id'], $data['qty']);
-                $updateStokKendaraan = $this->motorRepository->updateDataKendaraan($dataMotor[0]['_id'], ['stok' => ($dataMotor[0]['stok'] - $data['qty'])]);
+                $updateStokKendaraan = $this->motorRepository->updateDataKendaraan([
+                    'id' => $dataMotor[0]['_id'],
+                    'stok' => ($dataMotor[0]['stok'] - $data['qty'])
+                    ]);
 
                 return [
                         "status" => true,
@@ -140,7 +143,10 @@ class KendaraanService
                 }
 
                 $createHistoryPenjualan = $this->historyPenjualanRepository->createHistoryPenjualan($dataMobil[0]['_id'], $data['qty']);
-                $updateStokKendaraan = $this->mobilRepository->updateDataKendaraan($dataMobil[0]['_id'], ['stok' => ($dataMobil[0]['stok'] - $data['qty'])]);
+                $updateStokKendaraan = $this->mobilRepository->updateDataKendaraan([
+                    'id' => $dataMobil[0]['_id'],
+                    'stok' => ($dataMobil[0]['stok'] - $data['qty'])
+                ]);
 
                 return [
                         "status" => true,
@@ -155,7 +161,7 @@ class KendaraanService
 
 
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
     }
 
@@ -193,7 +199,7 @@ class KendaraanService
             return $result;
 
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
 
         
@@ -223,7 +229,7 @@ class KendaraanService
             return $result;
 
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
 
     }
@@ -253,7 +259,7 @@ class KendaraanService
             return $result;
 
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
 
     }
@@ -266,7 +272,7 @@ class KendaraanService
     
             return $listDataMobil;
         } catch (\Exception $error) {
-            throw new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
     }
 
@@ -293,7 +299,7 @@ class KendaraanService
             return $result;
 
         } catch (\Exception $error) {
-            return new \Exception($error->getMessage(), 500);
+            throw new \Exception($error->getMessage(), $error->getCode());
         }
 
         
