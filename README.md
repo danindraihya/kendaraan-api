@@ -14,6 +14,7 @@
 6. Run unit testing with command 'php artisan test'
 7. Run server with command 'php artisan serve'
 8. Login with (username: test, password: test) on /api/login to generate token to access others REST API
+9. You can import KendaraanAPI.postman_collection.json with postman to see documentation API
 
 
 

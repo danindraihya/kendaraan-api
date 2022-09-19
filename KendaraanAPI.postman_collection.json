@@ -1,0 +1,419 @@
+{
+	"info": {
+		"_postman_id": "1e9ceff1-32ad-4181-81f5-a84dbb3f6a0d",
+		"name": "KendaraanAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Check Stok All Kendaraan",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY2MzYwNjg1NSwiZXhwIjoxNjYzNjEwNDU1LCJuYmYiOjE2NjM2MDY4NTUsImp0aSI6IjFnbkV1bzBZOFZjSzhUejQiLCJzdWIiOiI2MzI4YTAyZDEyOWIwZWJkYzEwZTYxYjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.civPopfIDGMz9VKlO9dHuFwZcxD-eSdzBEMdg0VT2ag",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/kendaraan/lihatStokAllKendaraan",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"lihatStokAllKendaraan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Stok By Merek Kendaran",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY2MzYwNjg1NSwiZXhwIjoxNjYzNjEwNDU1LCJuYmYiOjE2NjM2MDY4NTUsImp0aSI6IjFnbkV1bzBZOFZjSzhUejQiLCJzdWIiOiI2MzI4YTAyZDEyOWIwZWJkYzEwZTYxYjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.civPopfIDGMz9VKlO9dHuFwZcxD-eSdzBEMdg0VT2ag",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"merek\": \"Toyota\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/kendaraan/lihatStokKendaraanByMerek",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"lihatStokKendaraanByMerek"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tambah Data Motor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY2MzU1MjM4NSwiZXhwIjoxNjYzNTU1OTg1LCJuYmYiOjE2NjM1NTIzODUsImp0aSI6IllTUnZWSjNKc3ZiZFowSksiLCJzdWIiOiI2MzI3NDQwMGRkYjA4OTgzNGQwMWMxZTIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.IPrynU5F3fxNNsGO1y14orjd2TNgX2Mpb0ci5p7OsJs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"merek\": \"Vario\",\r\n    \"tahun_keluaran\": 2004,\r\n    \"warna\": \"Hijau\",\r\n    \"harga\": 15000,\r\n    \"mesin\": \"V Engine\",\r\n    \"tipe_suspensi\": \"aaa\",\r\n    \"tipe_transmisi\": \"matic\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/kendaraan/tambahDataMotor",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"tambahDataMotor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tambah Data Mobil",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/kendaraan/tambahDataMobil",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"tambahDataMobil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Data Motor",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY2MzYwNjg1NSwiZXhwIjoxNjYzNjEwNDU1LCJuYmYiOjE2NjM2MDY4NTUsImp0aSI6IjFnbkV1bzBZOFZjSzhUejQiLCJzdWIiOiI2MzI4YTAyZDEyOWIwZWJkYzEwZTYxYjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.civPopfIDGMz9VKlO9dHuFwZcxD-eSdzBEMdg0VT2ag",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"merek\": \"Ducati\",\r\n    \"stok\": 5000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/kendaraan/updateDataMotor",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"updateDataMotor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Data Mobil",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY2MzYwNjg1NSwiZXhwIjoxNjYzNjEwNDU1LCJuYmYiOjE2NjM2MDY4NTUsImp0aSI6IjFnbkV1bzBZOFZjSzhUejQiLCJzdWIiOiI2MzI4YTAyZDEyOWIwZWJkYzEwZTYxYjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.civPopfIDGMz9VKlO9dHuFwZcxD-eSdzBEMdg0VT2ag",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"merek\": \"Toyota\",\r\n    \"stok\": 99999\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/kendaraan/updateDataMobil",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"updateDataMobil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Laporan By Merek Kendaraan",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY2MzYwNjg1NSwiZXhwIjoxNjYzNjEwNDU1LCJuYmYiOjE2NjM2MDY4NTUsImp0aSI6IjFnbkV1bzBZOFZjSzhUejQiLCJzdWIiOiI2MzI4YTAyZDEyOWIwZWJkYzEwZTYxYjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.civPopfIDGMz9VKlO9dHuFwZcxD-eSdzBEMdg0VT2ag",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"merek\": \"Toyota\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/kendaraan/getLaporanPenjualanPerKendaraan",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"getLaporanPenjualanPerKendaraan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Jual Kendaraan",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY2MzYwNjg1NSwiZXhwIjoxNjYzNjEwNDU1LCJuYmYiOjE2NjM2MDY4NTUsImp0aSI6IjFnbkV1bzBZOFZjSzhUejQiLCJzdWIiOiI2MzI4YTAyZDEyOWIwZWJkYzEwZTYxYjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.civPopfIDGMz9VKlO9dHuFwZcxD-eSdzBEMdg0VT2ag",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"merek\": \"Toyota\",\r\n    \"qty\": 3,\r\n    \"total_pembayaran\": 100000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/kendaraan/jualKendaraan",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"kendaraan",
+						"jualKendaraan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"test\",\r\n    \"password\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"dandi\",\r\n    \"password\": \"dandi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
